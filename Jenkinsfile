@@ -1,3 +1,11 @@
+def SSH_PRV
+def SSH_PUB
+
+node {
+  SSH_PRV = sh(returnStdout: true, script: 'cat /var/lib/jenkins/.ssh/id_rsa')
+  SSH_PUB = sh(returnStdout: true, script: 'cat /var/lib/jenkins/.ssh/id_rsa.pub')
+}
+
 pipeline {
     environment {
         nexus_rep = '178.154.222.201:5555'
@@ -5,8 +13,7 @@ pipeline {
     }
     agent {
         dockerfile {
-            additionalBuildArgs '--build-arg ssh_prv_key="${cat ~/.ssh/id_rsa}"'
-            additionalBuildArgs '--build-arg ssh_pub_key="\$(cat ~/.ssh/id_rsa.pub)"'
+            additionalBuildArgs '--build-arg ssh_prv_key="SSH_PRV" --build-arg ssh_pub_key="SSH_PUB"'
             args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
