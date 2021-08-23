@@ -1,7 +1,7 @@
 pipeline {
     environment {
         nexus_rep = '178.154.222.201:5555'
-        deploy_node = '178.154.223.134'
+        deploy_node = '178.154.226.81'
     }
     agent {
         dockerfile {
