@@ -4,8 +4,9 @@ pipeline {
         deploy_node = '178.154.223.134'
     }
     agent {
-        docker { 
-            image '178.154.222.201:5555/boxbuilder'
+        dockerfile {
+            additionalBuildArgs '--build-arg ssh_prv_key="${cat ~/.ssh/id_rsa}"'
+            additionalBuildArgs '--build-arg ssh_pub_key="\$(cat ~/.ssh/id_rsa.pub)"'
             args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
