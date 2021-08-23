@@ -14,7 +14,7 @@ pipeline {
     agent {
         dockerfile {
             dir '.'
-            additionalBuildArgs '--build-arg ssh_prv_key="SSH_PRV" --build-arg ssh_pub_key="SSH_PUB"'
+            additionalBuildArgs '--build-arg ssh_prv_key=$SSH_PRV --build-arg ssh_pub_key=$SSH_PUB'
             args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
