@@ -1,7 +1,6 @@
 # source-code-docker-build-image-
 
-ssh-keygen  
-docker build -t builder --build-arg ssh_prv_key="$(cat ~/.ssh/id_rsa)" --build-arg ssh_pub_key="$(cat ~/.ssh/id_rsa.pub)" .  
-docker tag XXXX/boxbuilder  
-docker login XXXX  
-docker push XXXX/boxbuilder  
+1 ssh-keygen  
+2 create and run docker image as environment for build app
+3 build image app as docker image and push it to repo
+4 connect via ssh to production, then pull and start image app
